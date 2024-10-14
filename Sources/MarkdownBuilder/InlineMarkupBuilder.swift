@@ -3,6 +3,15 @@ import Markdown
 @resultBuilder
 enum InlineMarkupBuilder {
     static func buildExpression(
+        _ expression: String
+    ) -> [any InlineMarkup] {
+        Document(parsing: expression)
+            .children
+            .flatMap(\.children)
+            .compactMap { $0 as? InlineMarkup }
+    }
+
+    static func buildExpression(
         _ expression: some InlineMarkup
     ) -> [any InlineMarkup] {
         [expression]

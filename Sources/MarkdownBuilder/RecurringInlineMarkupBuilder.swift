@@ -3,6 +3,15 @@ import Markdown
 @resultBuilder
 enum RecurringInlineMarkupBuilder {
     static func buildExpression(
+        _ expression: String
+    ) -> [any RecurringInlineMarkup] {
+        Document(parsing: expression)
+            .children
+            .flatMap(\.children)
+            .compactMap { $0 as? RecurringInlineMarkup }
+    }
+
+    static func buildExpression(
         _ expression: some RecurringInlineMarkup
     ) -> [any RecurringInlineMarkup] {
         [expression]

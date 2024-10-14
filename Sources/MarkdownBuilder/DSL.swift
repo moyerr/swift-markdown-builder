@@ -40,12 +40,20 @@ extension ListItemContainer {
     }
 }
 
+// MARK: Explicit Blocks
+
 extension CodeBlock {
     public init(
         language: String? = nil,
         _ content: () -> String
     ) {
         self.init(language: language, content())
+    }
+}
+
+extension HTMLBlock {
+    public init(_ content: () -> String) {
+        self.init(content())
     }
 }
 

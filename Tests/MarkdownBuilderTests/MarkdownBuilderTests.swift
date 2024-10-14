@@ -4,14 +4,27 @@ import Testing
 @Test func example() async throws {
     let document = Document {
         Heading(level: 2) {
-            Text("Heading!")
+            Text("Result builders")
         }
 
         Paragraph {
-            Text("First Paragraph")
+            "Declare them by decorating a type with "
+            InlineCode("@resultBuilder")
+        }
+
+        Paragraph {
+            "First Paragraph has `some Code` and it is **legit**"
             SoftBreak()
             Text("wow")
+            LineBreak()
+            Link(destination: "https://www.apple.com/") {
+                "**`some bold code`** and normal text"
+            }
         }
+
+        "Second Paragraph `has some code` and an <a href=http://www.apple.com/>inline link</a>"
+
+        "<img width=280 src=http://example.com/img.jpg>"
 
         CodeBlock(language: "swift") {
             """
@@ -24,10 +37,20 @@ import Testing
 
         OrderedList {
             for i in 1 ... 10 {
-                ListItem { Paragraph(Text("Item \(i)")) }
+                ListItem { "Item \(i)" }
+            }
+        }
+
+        UnorderedList {
+            for i in 11 ... 20 {
+                ListItem {
+                    "Item \(i)"
+                }
             }
         }
     }
 
     print(document.format())
+    print("-----------")
+    print(document.debugDescription())
 }

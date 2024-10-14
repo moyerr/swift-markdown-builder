@@ -3,6 +3,20 @@ import Markdown
 @resultBuilder
 enum BlockMarkupBuilder {
     static func buildExpression(
+        _ expression: String
+    ) -> [any BlockMarkup] {
+        Document(parsing: expression)
+            .children
+            .compactMap { $0 as? BlockMarkup }
+    }
+
+    static func buildExpression(
+        _ expression: some InlineMarkup
+    ) -> [any BlockMarkup] {
+        [Paragraph(expression)]
+    }
+
+    static func buildExpression(
         _ expression: some BlockMarkup
     ) -> [any BlockMarkup] {
         [expression]
