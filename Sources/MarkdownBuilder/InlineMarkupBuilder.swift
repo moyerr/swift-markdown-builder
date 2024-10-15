@@ -20,7 +20,7 @@ enum InlineMarkupBuilder {
     static func buildBlock(
         _ components: [any InlineMarkup]...
     ) -> [any InlineMarkup] {
-        components.flatMap { $0 }
+        components.flatMap(\.self)
     }
 
     static func buildOptional(
@@ -44,6 +44,6 @@ enum InlineMarkupBuilder {
     static func buildArray(
         _ components: [[any InlineMarkup]]
     ) -> [any InlineMarkup] {
-        components.flatMap { $0 }
+        components.flatMap(\.self)
     }
 }

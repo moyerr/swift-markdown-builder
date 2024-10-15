@@ -25,7 +25,7 @@ enum BlockMarkupBuilder {
     static func buildBlock(
         _ components: [any BlockMarkup]...
     ) -> [any BlockMarkup] {
-        components.flatMap { $0 }
+        components.flatMap(\.self)
     }
 
     static func buildOptional(
@@ -49,6 +49,6 @@ enum BlockMarkupBuilder {
     static func buildArray(
         _ components: [[any BlockMarkup]]
     ) -> [any BlockMarkup] {
-        components.flatMap { $0 }
+        components.flatMap(\.self)
     }
 }
