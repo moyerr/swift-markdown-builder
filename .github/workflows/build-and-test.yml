@@ -1,0 +1,37 @@
+name: Build and Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: Build and Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, macos-15]
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Cache .build folder
+          uses: actions/cache@v4
+          with:
+            path: .build
+            key: ${{ runner.os }}-build-${{ hashFiles('Package.resolved') }}-${{ hashFiles('**/*.swift') }}
+
+        - name: Output Swift version
+          run: swift --version
+
+        - name: Build
+          run: |
+            swift build \
+              --build-tests \
+              --enable-swift-testing \
+              --disable-xctest
+
+        - name: Test
+          run: swift test --skip-build
