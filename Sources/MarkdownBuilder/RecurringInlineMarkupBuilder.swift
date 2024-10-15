@@ -20,7 +20,7 @@ enum RecurringInlineMarkupBuilder {
     static func buildBlock(
         _ components: [any RecurringInlineMarkup]...
     ) -> [any RecurringInlineMarkup] {
-        components.flatMap(\.self)
+        components.flatMap { $0 }
     }
 
     static func buildOptional(
@@ -44,6 +44,6 @@ enum RecurringInlineMarkupBuilder {
     static func buildArray(
         _ components: [[any RecurringInlineMarkup]]
     ) -> [any RecurringInlineMarkup] {
-        components.flatMap(\.self)
+        components.flatMap { $0 }
     }
 }

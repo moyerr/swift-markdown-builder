@@ -11,7 +11,7 @@ enum ListItemBuilder {
     static func buildBlock(
         _ components: [ListItem]...
     ) -> [ListItem] {
-        components.flatMap(\.self)
+        components.flatMap { $0 }
     }
 
     static func buildOptional(
@@ -35,6 +35,6 @@ enum ListItemBuilder {
     static func buildArray(
         _ components: [[ListItem]]
     ) -> [ListItem] {
-        components.flatMap(\.self)
+        components.flatMap { $0 }
     }
 }
