@@ -8,7 +8,7 @@ enum InlineMarkupBuilder {
         Document(parsing: expression)
             .children
             .flatMap(\.children)
-            .compactMap { $0 as? InlineMarkup }
+            .compactMap { $0.detachedFromParent as? InlineMarkup }
     }
 
     static func buildExpression(

@@ -7,7 +7,7 @@ enum BlockMarkupBuilder {
     ) -> [any BlockMarkup] {
         Document(parsing: expression)
             .children
-            .compactMap { $0 as? BlockMarkup }
+            .compactMap { $0.detachedFromParent as? BlockMarkup }
     }
 
     static func buildExpression(
