@@ -1,8 +1,8 @@
 import Markdown
 
 @resultBuilder
-enum InlineMarkupBuilder {
-    static func buildExpression(
+public enum InlineMarkupBuilder {
+    public static func buildExpression(
         _ expression: String
     ) -> [any InlineMarkup] {
         Document(parsing: expression)
@@ -11,37 +11,37 @@ enum InlineMarkupBuilder {
             .compactMap { $0.detachedFromParent as? InlineMarkup }
     }
 
-    static func buildExpression(
+    public static func buildExpression(
         _ expression: some InlineMarkup
     ) -> [any InlineMarkup] {
         [expression]
     }
 
-    static func buildBlock(
+    public static func buildBlock(
         _ components: [any InlineMarkup]...
     ) -> [any InlineMarkup] {
         components.flatMap(\.self)
     }
 
-    static func buildOptional(
+    public static func buildOptional(
         _ component: [any InlineMarkup]?
     ) -> [any InlineMarkup] {
         component ?? []
     }
 
-    static func buildEither(
+    public static func buildEither(
         first component: [any InlineMarkup]
     ) -> [any InlineMarkup] {
         return component
     }
 
-    static func buildEither(
+    public static func buildEither(
         second component: [any InlineMarkup]
     ) -> [any InlineMarkup] {
         return component
     }
 
-    static func buildArray(
+    public static func buildArray(
         _ components: [[any InlineMarkup]]
     ) -> [any InlineMarkup] {
         components.flatMap(\.self)

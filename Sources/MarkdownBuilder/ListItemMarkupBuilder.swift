@@ -1,38 +1,38 @@
 import Markdown
 
 @resultBuilder
-enum ListItemBuilder {
-    static func buildExpression(
+public enum ListItemBuilder {
+    public static func buildExpression(
         _ expression: ListItem
     ) -> [ListItem] {
         [expression]
     }
 
-    static func buildBlock(
+    public static func buildBlock(
         _ components: [ListItem]...
     ) -> [ListItem] {
         components.flatMap(\.self)
     }
 
-    static func buildOptional(
+    public static func buildOptional(
         _ component: [ListItem]?
     ) -> [ListItem] {
         component ?? []
     }
 
-    static func buildEither(
+    public static func buildEither(
         first component: [ListItem]
     ) -> [ListItem] {
         return component
     }
 
-    static func buildEither(
+    public static func buildEither(
         second component: [ListItem]
     ) -> [ListItem] {
         return component
     }
 
-    static func buildArray(
+    public static func buildArray(
         _ components: [[ListItem]]
     ) -> [ListItem] {
         components.flatMap(\.self)
