@@ -14,6 +14,10 @@ let package = Package(
         .package(url: "https://github.com/swiftlang/swift-markdown", from: "0.5.0"),
     ],
     targets: [
+        .executableTarget(
+            name: "create-readme",
+            dependencies: ["MarkdownBuilder"]
+        ),
         .target(
             name: "MarkdownBuilder",
             dependencies: [
