@@ -153,13 +153,13 @@ struct InlineMarkupBuilderTests {
     @Test(
         "Ensure inline elements built from raw strings have no parent",
         Comment("""
-            Inline elements built from raw strings are parsed using the the Document(parsing:) \
-            initializer. The individual blocks returned by the result builder should \
+            Elements built from raw strings are parsed using the the Document(parsing:) \
+            initializer. The individual items returned by the result builder should \
             not reference that Document as their parent.
             """
         )
     )
-    func testRawStringsProduceBlocksWithoutParents() {
+    func testRawStringsProduceElementsWithoutParents() {
         @InlineMarkupBuilder
         var results: [any InlineMarkup] {
             """
