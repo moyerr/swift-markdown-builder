@@ -8,7 +8,7 @@ enum RecurringInlineMarkupBuilder {
         Document(parsing: expression)
             .children
             .flatMap(\.children)
-            .compactMap { $0 as? RecurringInlineMarkup }
+            .compactMap { $0.detachedFromParent as? RecurringInlineMarkup }
     }
 
     static func buildExpression(
